@@ -1,3 +1,4 @@
+let searchValue = '';
 document.querySelector("#btn").addEventListener('click',function(){
     const item=document.getElementById('iteminput');
     const val=item.value;
@@ -14,13 +15,14 @@ document.querySelector("#btn").addEventListener('click',function(){
         }
         document.querySelector("#shows").addEventListener('click',function(){
             pageno=pageno+1;
-            search(val,pageno);
+            search(searchValue,pageno);
         })
     }
 })
 const apikey="5_6cmxNgdchIbiACDfgQEj9YOpbDuHOGpLeuF2zFNdg";
 const url="https://api.unsplash.com/search/photos?";
 async function search(val,pageno){
+    searchValue = val;
     try{
         const response=await fetch(url+`&client_id=${apikey}`+`&query=${val}`+`&page=${pageno}&per_page=12`);
         const data=await response.json();
